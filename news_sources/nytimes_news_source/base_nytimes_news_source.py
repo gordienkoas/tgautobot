@@ -10,8 +10,7 @@ class BaseNYTimesNewsSource(BaseNewsSource):
     SOURCE = 'New York Times'
     HASHTAG = 'WORLD'
 
-    def __init__(self):
-        super().__init__(url='https://www.nytimes.com/section/world')
+
 
 
     def _get_raw_today_news(self) -> List[Any]:

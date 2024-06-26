@@ -1,5 +1,5 @@
 import os
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Tuple, Optional
 from abc import ABC, abstractmethod
 from pathlib import Path
 import textwrap
@@ -30,8 +30,12 @@ class BaseNewsSource(ABC):
         raw_news = self._get_raw_today_news()
         return self._map_raw_news(raw_news=raw_news)
 
-    # def construct_message(self, news: News) -> str:
-    #     return f"{formatting.hbold(news.title)}\n\n{news.summary}\n\n Source: {self.SOURCE}"
+    def get_one_news(self) -> Optional[News]:
+        all_news = self.get_news()
+        for one_news in all_news:
+            return one_news
+        return None
+
 
     def construct_caption(self, news: News) -> str:
         return f"{news.summary}\n\n{self._get_footer()}"
